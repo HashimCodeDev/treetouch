@@ -1,0 +1,18 @@
+{
+    "name": "treetouch",
+    "version": "0.1.0",
+    "description": "CLI to turn indented text into folder/file structure",
+    "bin": {
+        "treetouch": "./bin/treetouch"
+    },
+    "scripts": {
+        "postinstall": "node install.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/YOUR_USERNAME/treetouch.git"
+    },
+    "license": "MIT",
+    "author": "Hashim Mohamed T A",
+    "dependencies": {}
+}

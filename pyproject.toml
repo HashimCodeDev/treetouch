@@ -1,7 +1,21 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "treetouch"
 version = "0.1.0"
-description = "Add your description here"
+description = "CLI tool to turn indented text to folders/files"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+keywords = ["cli", "folder", "directory", "structure"]
+authors = [{name = "Hashim Mohamed T A", email = "hashimmohamedta@proton.me"}]
+dependencies = [
+    "pyinstaller>=6.16.0",
+]
+
+[project.scripts]
+treetouch = "main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]

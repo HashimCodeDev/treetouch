@@ -1,0 +1,9 @@
+#!/bin/sh
+basedir=$(dirname "$0")
+
+if [ -x "$basedir/treetouch" ]; then
+  exec "$basedir/treetouch" "$@"
+else
+  echo "Error: binary not found."
+  exit 1
+fi
