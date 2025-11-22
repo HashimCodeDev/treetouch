@@ -3,7 +3,7 @@ const path = require('path');
 const https = require('https');
 const { execSync } = require('child_process');
 
-const VERSION = 'v0.1.0';
+const VERSION = 'v0.1.2';
 const REPO = 'HashimCodeDev/treetouch';
 
 const PLATFORM_MAP = {
