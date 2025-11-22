@@ -22,28 +22,36 @@ if (!assetName) {
 
 const url = `https://github.com/${REPO}/releases/download/${VERSION}/${assetName}`;
 const dir = path.join(__dirname, 'bin');
-const filePath = path.join(dir, platform === 'win32' ? 'treetouch.exe' : 'treetouch');
+
+// IMPORTANT: Save as treetouch-bin to avoid collision with launcher script
+const filePath = path.join(dir, platform === 'win32' ? 'treetouch-bin.exe' : 'treetouch-bin');
 
 if (!fs.existsSync(dir)) fs.mkdirSync(dir);
 
 console.log(`Downloading ${assetName} from ${url}...`);
 
 https.get(url, (res) => {
-    if (res.statusCode === 302) {
+    if (res.statusCode === 302 || res.statusCode === 301) {
         https.get(res.headers.location, (redirectRes) => {
-            redirectRes.pipe(fs.createWriteStream(filePath)).on('finish', () => {
+            const file = fs.createWriteStream(filePath);
+            redirectRes.pipe(file);
+            file.on('finish', () => {
+                file.close();
                 if (platform !== 'win32') {
-                    execSync(`chmod +x ${filePath}`);
+                    execSync(`chmod +x "${filePath}"`);
                 }
-                console.log('Download complete.');
+                console.log('✓ Download complete.');
             });
         });
     } else if (res.statusCode === 200) {
-        res.pipe(fs.createWriteStream(filePath)).on('finish', () => {
+        const file = fs.createWriteStream(filePath);
+        res.pipe(file);
+        file.on('finish', () => {
+            file.close();
             if (platform !== 'win32') {
-                execSync(`chmod +x ${filePath}`);
+                execSync(`chmod +x "${filePath}"`);
             }
-            console.log('Download complete.');
+            console.log('✓ Download complete.');
         });
     } else {
         console.error(`Failed to download binary; status code: ${res.statusCode}`);

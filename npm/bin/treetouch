@@ -1,9 +1,12 @@
 #!/bin/sh
 basedir=$(dirname "$0")
 
-if [ -x "$basedir/treetouch" ]; then
-  exec "$basedir/treetouch" "$@"
+# Call the downloaded binary
+if [ -x "$basedir/treetouch-bin" ]; then
+    exec "$basedir/treetouch-bin" "$@"
+elif [ -x "$basedir/treetouch-bin.exe" ]; then
+    exec "$basedir/treetouch-bin.exe" "$@"
 else
-  echo "Error: binary not found."
-  exit 1
+    echo "Error: treetouch binary not found. Reinstall with: pnpm install -g treetouch"
+    exit 1
 fi
