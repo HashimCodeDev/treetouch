@@ -16,7 +16,10 @@ Eliminate manual folder creation. Accept a structured specification and material
 ## Installation
 
 ```bash
+#using npm
 npm install -g treetouch
+#using pip
+pip install treetouch
 ```
 
 ## Usage
@@ -90,3 +93,4 @@ project
 ## Notes
 
 TreeTouch creates only the structure. File contents remain empty.
+
