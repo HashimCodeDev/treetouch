@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "treetouch"
-version = "1.1.1"
+version = "1.1.0"
 description = "CLI tool to turn indented text to folders/files"
 readme = "README.md"
 requires-python = ">=3.13"
